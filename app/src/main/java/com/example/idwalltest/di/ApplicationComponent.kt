@@ -2,6 +2,7 @@ package com.example.idwalltest.di
 
 import android.content.Context
 import com.example.idwalltest.IdWallTestApplication
+import com.example.idwalltest.di.modules.SignupModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -12,7 +13,8 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AndroidInjectionModule::class,
-        ApplicationModule::class
+        ApplicationModule::class,
+        SignupModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<IdWallTestApplication> {
