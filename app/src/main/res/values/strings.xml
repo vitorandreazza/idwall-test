@@ -2,4 +2,6 @@
     <string name="app_name">Idwall test</string>
     <string name="hint_email">E-mail</string>
     <string name="common_signup">Cadastrar</string>
+    <string name="error_invalid_email">Email inválido</string>
+    <string name="error_generic">Uma falha ocorreu. Tente novamente</string>
 </resources>
