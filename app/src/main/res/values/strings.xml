@@ -4,4 +4,10 @@
     <string name="common_signup">Cadastrar</string>
     <string name="error_invalid_email">Email inválido</string>
     <string name="error_generic">Uma falha ocorreu. Tente novamente</string>
+    <string name="common_filter">Filtrar</string>
+    <string name="common_feed">Feed</string>
+    <string name="feed_filter_husky">Husky</string>
+    <string name="feed_filter_hound">Hound</string>
+    <string name="feed_filter_pug">Pug</string>
+    <string name="feed_filter_labrador">Labrador</string>
 </resources>

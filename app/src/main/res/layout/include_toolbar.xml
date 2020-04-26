@@ -3,11 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="?actionBarSize">
+    android:layout_height="?actionBarSize"
+    app:layout_scrollFlags="enterAlways">
 
-    <com.google.android.material.appbar.MaterialToolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
+        app:layout_scrollFlags="enterAlways"
         android:layout_height="match_parent"
         tools:title="@string/app_name" />
 

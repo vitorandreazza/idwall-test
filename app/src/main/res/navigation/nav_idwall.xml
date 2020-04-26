@@ -8,6 +8,15 @@
     <fragment
         android:id="@+id/signup_fragment"
         android:name="com.example.idwalltest.ui.signup.SignupFragment"
-        tools:layout="@layout/fragment_signup" />
+        tools:layout="@layout/fragment_signup">
+        <action
+            android:id="@+id/action_signup_fragment_to_feed_fragment"
+            app:destination="@id/feed_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/feed_fragment"
+        android:name="com.example.idwalltest.ui.feed.FeedFragment"
+        tools:layout="@layout/fragment_feed" />
 
 </navigation>

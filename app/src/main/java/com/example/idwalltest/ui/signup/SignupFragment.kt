@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import com.example.idwalltest.R
 import com.example.idwalltest.databinding.FragmentSignupBinding
 import com.example.idwalltest.extensions.requireAppCompatActivity
@@ -36,10 +38,10 @@ class SignupFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         requireAppCompatActivity().apply {
             setSupportActionBar(toolbar)
-            toolbar.title = getString(R.string.app_name)
+            supportActionBar?.setTitle(R.string.app_name)
         }
         viewModel.navigateToFeedEvent.observe(viewLifecycleOwner, EventObserver {
-            Log.d("TEST", "NAVIGATE")
+            findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToFeedFragment())
         })
     }
 }

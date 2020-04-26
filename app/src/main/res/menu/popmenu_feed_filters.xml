@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/filter_husky"
+        android:title="@string/feed_filter_husky" />
+    <item
+        android:id="@+id/filter_hound"
+        android:title="@string/feed_filter_hound" />
+    <item
+        android:id="@+id/filter_pug"
+        android:title="@string/feed_filter_pug" />
+    <item
+        android:id="@+id/filter_labrador"
+        android:title="@string/feed_filter_labrador" />
+</menu>

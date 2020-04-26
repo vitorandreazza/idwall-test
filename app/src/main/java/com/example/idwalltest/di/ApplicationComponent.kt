@@ -2,6 +2,7 @@ package com.example.idwalltest.di
 
 import android.content.Context
 import com.example.idwalltest.IdWallTestApplication
+import com.example.idwalltest.di.modules.FeedModule
 import com.example.idwalltest.di.modules.SignupModule
 import dagger.BindsInstance
 import dagger.Component
@@ -14,7 +15,8 @@ import javax.inject.Singleton
     modules = [
         AndroidInjectionModule::class,
         ApplicationModule::class,
-        SignupModule::class
+        SignupModule::class,
+        FeedModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<IdWallTestApplication> {
