@@ -8,12 +8,17 @@
         <variable
             name="imgUrl"
             type="String" />
+
+        <variable
+            name="vm"
+            type="com.example.idwalltest.ui.feed.FeedViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?selectableItemBackground">
+        android:background="?selectableItemBackground"
+        android:onClick="@{() -> vm.zoomImage(imgUrl)}">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_feed"

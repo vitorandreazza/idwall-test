@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.idwalltest.databinding.ItemFeedBinding
 
-class FeedAdapter : ListAdapter<String, FeedAdapter.FeedViewHolder>(FeedDiffCallback()) {
+class FeedAdapter(
+    private val viewModel: FeedViewModel
+) : ListAdapter<String, FeedAdapter.FeedViewHolder>(FeedDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder =
         FeedViewHolder(
@@ -15,7 +17,8 @@ class FeedAdapter : ListAdapter<String, FeedAdapter.FeedViewHolder>(FeedDiffCall
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),
+            viewModel
         )
 
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
@@ -23,12 +26,14 @@ class FeedAdapter : ListAdapter<String, FeedAdapter.FeedViewHolder>(FeedDiffCall
     }
 
     class FeedViewHolder(
-        private val binding: ItemFeedBinding
+        private val binding: ItemFeedBinding,
+        private val viewModel: FeedViewModel
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: String) {
             binding.apply {
                 imgUrl = item
+                vm = viewModel
                 executePendingBindings()
             }
         }

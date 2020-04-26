@@ -11,6 +11,7 @@ import com.example.idwalltest.data.Result
 import com.example.idwalltest.data.models.FeedCategory
 import com.example.idwalltest.data.models.FeedResponse
 import com.example.idwalltest.data.repositories.FeedRepository
+import com.example.idwalltest.extensions.hide
 import com.example.idwalltest.extensions.log
 import com.example.idwalltest.ui.BaseViewModel
 import com.example.idwalltest.ui.signup.SignupViewModel
@@ -33,6 +34,8 @@ class FeedViewModel @Inject constructor(
             }
         }
     }
+    private val _zoomImg = MutableLiveData<String?>()
+    val zoomImg = _zoomImg.hide()
 
     fun setFilter(@IdRes itemId: Int) {
         val feedCategory = when (itemId) {
@@ -42,6 +45,10 @@ class FeedViewModel @Inject constructor(
             else -> FeedCategory.HUSKY
         }
         feedFilter.value = feedCategory
+    }
+
+    fun zoomImage(imgUrl: String?) {
+        _zoomImg.value = imgUrl
     }
 
     companion object {

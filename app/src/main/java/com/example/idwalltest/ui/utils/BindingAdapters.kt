@@ -28,9 +28,10 @@ fun TextInputLayout.error(@StringRes msg: Int?) {
 }
 
 @BindingAdapter(value = ["imgUrl", "errorDrawable"], requireAll = false)
-fun ImageView.bindLoadImage(url: String, @DrawableRes errorDrawable: Int? = null) {
+fun ImageView.bindLoadImage(url: String?, @DrawableRes errorDrawable: Int? = null) {
     Picasso.with(context)
         .load(url)
+        .placeholder(R.drawable.ic_image)
         .error(errorDrawable ?: R.drawable.ic_broken_image)
         .into(this)
 }

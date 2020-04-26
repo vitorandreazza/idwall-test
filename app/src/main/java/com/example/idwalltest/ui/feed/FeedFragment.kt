@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
@@ -22,7 +23,8 @@ import javax.inject.Inject
 
 class FeedFragment : DaggerFragment() {
 
-    @Inject lateinit var factory: ViewModelProvider.Factory
+    @Inject
+    lateinit var factory: ViewModelProvider.Factory
     private val viewModel by viewModels<FeedViewModel> { factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,14 +48,16 @@ class FeedFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         toolbar.setTitle(R.string.common_feed)
         requireAppCompatActivity().setSupportActionBar(toolbar)
-
-        val feedAdapter = FeedAdapter()
+        val feedAdapter = FeedAdapter(viewModel)
         recyclerview_feed.apply {
             layoutManager = GridLayoutManager(context, 2)
             adapter = feedAdapter
         }
         viewModel.feed.observe(viewLifecycleOwner) {
             feedAdapter.submitList(it)
+        }
+        frame_scrim.setOnClickListener {
+            it.isVisible = false
         }
     }
 
