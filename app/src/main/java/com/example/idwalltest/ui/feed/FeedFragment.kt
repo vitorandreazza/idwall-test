@@ -24,8 +24,7 @@ import javax.inject.Inject
 
 class FeedFragment : DaggerFragment() {
 
-    @Inject
-    lateinit var factory: ViewModelProvider.Factory
+    @Inject lateinit var factory: ViewModelProvider.Factory
     private val viewModel by viewModels<FeedViewModel> { factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,16 +60,18 @@ class FeedFragment : DaggerFragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_feed, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
             R.id.action_filter -> {
                 val view = requireActivity().findViewById<View>(item.itemId)
                 inflateFilterPopMenu(view)
+                true
             }
+            else -> super.onOptionsItemSelected(item)
         }
-        return true
     }
 
     private fun inflateFilterPopMenu(anchorView: View) {

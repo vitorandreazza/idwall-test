@@ -12,9 +12,4 @@ class IdWallActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<ActivityIdwallBinding>(this, R.layout.activity_idwall)
     }
-
-    override fun onNavigateUp(): Boolean {
-        onBackPressed()
-        return super.onNavigateUp()
-    }
 }

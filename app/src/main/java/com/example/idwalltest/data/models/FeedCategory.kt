@@ -4,10 +4,10 @@ import android.annotation.SuppressLint
 import com.google.gson.annotations.SerializedName
 
 enum class FeedCategory {
-    @field:SerializedName("husky") HUSKY,
-    @field:SerializedName("hound") HOUND,
-    @field:SerializedName("pug") PUG,
-    @field:SerializedName("labrador") LABRADOR;
+    @SerializedName("husky") HUSKY,
+    @SerializedName("hound") HOUND,
+    @SerializedName("pug") PUG,
+    @SerializedName("labrador") LABRADOR;
 
     @SuppressLint("DefaultLocale")
     override fun toString(): String {
