@@ -46,6 +46,7 @@
                 android:id="@+id/edittext_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
                 android:inputType="textEmailAddress"
                 android:text="@={vm.email}" />
 
@@ -56,8 +57,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/keyline3"
-            android:onClick="@{() -> vm.signup()}"
+            android:inputType="none"
             android:text="@string/common_signup"
+            android:onClick="@{() -> vm.signup()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/inputlayout_email" />

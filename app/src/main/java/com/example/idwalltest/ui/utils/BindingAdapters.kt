@@ -2,7 +2,6 @@ package com.example.idwalltest.ui.utils
 
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.view.isVisible
@@ -31,7 +30,6 @@ fun TextInputLayout.error(@StringRes msg: Int?) {
 fun ImageView.bindLoadImage(url: String?, @DrawableRes errorDrawable: Int? = null) {
     Picasso.with(context)
         .load(url)
-        .placeholder(R.drawable.ic_image)
         .error(errorDrawable ?: R.drawable.ic_broken_image)
         .into(this)
 }

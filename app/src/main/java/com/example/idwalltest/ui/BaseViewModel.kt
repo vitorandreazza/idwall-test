@@ -6,7 +6,7 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 import kotlin.experimental.ExperimentalTypeInference
 
-abstract class BaseViewModel: ViewModel() {
+abstract class BaseViewModel : ViewModel() {
 
     protected val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean>
@@ -33,10 +33,12 @@ abstract class BaseViewModel: ViewModel() {
     protected fun <T> liveDataWithLoading(
         context: CoroutineContext = EmptyCoroutineContext,
         @BuilderInference call: suspend LiveDataScope<T>.() -> Unit
-    ): LiveData<T> =
-        liveData(context) {
-            withContext(Dispatchers.Main) { _isLoading.value = true }
+    ): LiveData<T> {
+        _isLoading.value = true
+        return liveData(context) {
             call()
             withContext(Dispatchers.Main) { _isLoading.value = false }
         }
+    }
+
 }

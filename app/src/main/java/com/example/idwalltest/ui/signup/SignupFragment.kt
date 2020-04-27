@@ -12,8 +12,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.idwalltest.R
 import com.example.idwalltest.databinding.FragmentSignupBinding
 import com.example.idwalltest.extensions.requireAppCompatActivity
+import com.example.idwalltest.extensions.shouldShowKeyboard
 import com.example.idwalltest.ui.utils.EventObserver
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.fragment_signup.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import javax.inject.Inject
 
@@ -36,11 +38,11 @@ class SignupFragment : DaggerFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        requireAppCompatActivity().apply {
-            setSupportActionBar(toolbar)
-            supportActionBar?.setTitle(R.string.app_name)
-        }
+        toolbar.setTitle(R.string.app_name)
+        requireAppCompatActivity().setSupportActionBar(toolbar)
+
         viewModel.navigateToFeedEvent.observe(viewLifecycleOwner, EventObserver {
+            context?.shouldShowKeyboard(view, show = false)
             findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToFeedFragment())
         })
     }

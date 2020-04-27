@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -55,9 +56,6 @@ class FeedFragment : DaggerFragment() {
         }
         viewModel.feed.observe(viewLifecycleOwner) {
             feedAdapter.submitList(it)
-        }
-        frame_scrim.setOnClickListener {
-            it.isVisible = false
         }
     }
 

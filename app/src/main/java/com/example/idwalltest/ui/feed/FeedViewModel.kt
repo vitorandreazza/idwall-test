@@ -1,41 +1,29 @@
 package com.example.idwalltest.ui.feed
 
-import android.util.Log
 import androidx.annotation.IdRes
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
-import androidx.lifecycle.map
-import androidx.lifecycle.switchMap
+import androidx.annotation.VisibleForTesting
+import androidx.lifecycle.*
 import com.example.idwalltest.R
 import com.example.idwalltest.data.Result
 import com.example.idwalltest.data.models.FeedCategory
-import com.example.idwalltest.data.models.FeedResponse
 import com.example.idwalltest.data.repositories.FeedRepository
 import com.example.idwalltest.extensions.hide
-import com.example.idwalltest.extensions.log
 import com.example.idwalltest.ui.BaseViewModel
-import com.example.idwalltest.ui.signup.SignupViewModel
 import kotlinx.coroutines.Dispatchers
+import timber.log.Timber
 import javax.inject.Inject
 
 class FeedViewModel @Inject constructor(
     private val repo: FeedRepository
 ) : BaseViewModel() {
 
-    private val feedFilter = MutableLiveData(FeedCategory.HUSKY)
-    val feed = feedFilter.switchMap { category ->
-        liveData {
-            when (val result = repo.getFeed(category)) {
-                is Result.Success -> emit(result.data.images)
-                is Result.Error -> {
-                    _toastText.value = R.string.error_generic
-                    Log.e(TAG, result.exception.log())
-                }
-            }
-        }
-    }
-    private val _zoomImg = MutableLiveData<String?>()
-    val zoomImg = _zoomImg.hide()
+    @VisibleForTesting
+    val feedFilter = MutableLiveData(FeedCategory.HUSKY)
+    val feed = feedFilter.switchMap(::mapFeedFilterAndEmitResult)
+
+    private val _zoomImgUrl = MutableLiveData<String?>()
+    val zoomImgUrl = _zoomImgUrl.hide()
+    val shouldZoomImg: LiveData<Boolean> = _zoomImgUrl.map { it != null }
 
     fun setFilter(@IdRes itemId: Int) {
         val feedCategory = when (itemId) {
@@ -47,11 +35,22 @@ class FeedViewModel @Inject constructor(
         feedFilter.value = feedCategory
     }
 
+    private fun mapFeedFilterAndEmitResult(category: FeedCategory): LiveData<List<String>> =
+        liveDataWithLoading(Dispatchers.IO) {
+            when (val result = repo.getFeed(category)) {
+                is Result.Success -> emit(result.data.images)
+                is Result.Error -> {
+                    _toastText.value = R.string.error_feed_api
+                    Timber.e(result.exception)
+                }
+            }
+        }
+
     fun zoomImage(imgUrl: String?) {
-        _zoomImg.value = imgUrl
+        _zoomImgUrl.value = imgUrl
     }
 
-    companion object {
-        private val TAG = FeedViewModel::class.java.simpleName
+    fun zoomOutImage() {
+        _zoomImgUrl.value = null
     }
 }

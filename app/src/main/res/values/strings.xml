@@ -10,4 +10,6 @@
     <string name="feed_filter_hound">Hound</string>
     <string name="feed_filter_pug">Pug</string>
     <string name="feed_filter_labrador">Labrador</string>
+    <string name="error_signup_api">Erro ao realizar o cadastro. Tente novamente mais tarde</string>
+    <string name="error_feed_api">Erro ao realizar recuperar o feed. Tente novamente mais tarde</string>
 </resources>
