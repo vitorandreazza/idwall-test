@@ -17,6 +17,10 @@
         tools:context=".ui.signup.SignupFragment">
 
         <include
+            android:id="@+id/include_toolbar"
+            layout="@layout/include_toolbar" />
+
+        <include
             layout="@layout/include_loading"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -25,10 +29,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/include_toolbar"
             bind:isLoading="@{vm.isLoading}" />
-
-        <include
-            android:id="@+id/include_toolbar"
-            layout="@layout/include_toolbar" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputlayout_email"

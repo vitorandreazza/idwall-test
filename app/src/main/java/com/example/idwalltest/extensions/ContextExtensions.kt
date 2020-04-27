@@ -1,6 +1,7 @@
 package com.example.idwalltest.extensions
 
 import android.content.Context
+import android.content.res.Configuration
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
@@ -20,4 +21,9 @@ fun Context.shouldShowKeyboard(view: View, show: Boolean) {
     } else {
         imm?.hideSoftInputFromWindow(view.windowToken, 0)
     }
+}
+
+fun Context.isDarkTheme(): Boolean {
+    return (resources.configuration.uiMode
+            and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
 }
